@@ -91,7 +91,7 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originImage: memeImageView.image!, finalImage: renderMeme())
         
         let activityViewController = UIActivityViewController(activityItems: [meme.finalImage], applicationActivities: nil)
-        self.presentViewController(activityViewController, animated: true, completion: nil)
+        presentViewController(activityViewController, animated: true, completion: nil)
         
     }
     
