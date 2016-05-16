@@ -21,7 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MdI-6f-n0B" userLabel="MemeView">
                                 <rect key="frame" x="20" y="64" width="560" height="448"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sbh-85-ZD1" userLabel="MemeImageView">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sbh-85-ZD1" userLabel="MemeImageView">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="448"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="top" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c7k-p8-YVo" userLabel="TopTextField" customClass="MemeTextField" customModule="MemeMe" customModuleProvider="target">
