@@ -18,9 +18,7 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
     @IBOutlet weak var bottomTextField: MemeTextField!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var albumButton: UIBarButtonItem!
-    @IBOutlet weak var memeContainerTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var memeContainerBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var toolbar: UIToolbar!
+
     
     var viewShifted = false
     
@@ -65,17 +63,15 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
     
     func keyboardWillShow(notification: NSNotification) {
         if bottomTextField.isFirstResponder() {
-            let newOffset = getKeyboardHeight(notification) - toolbar.bounds.height
-            memeContainerTopConstraint.constant -= newOffset
-            memeContainerBottomConstraint.constant += newOffset
+            let newOffset = getKeyboardHeight(notification)
+            view.frame.origin.y -= newOffset
             viewShifted = true
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
         if viewShifted {
-            memeContainerTopConstraint.constant = 0
-            memeContainerBottomConstraint.constant = 0
+           view.frame.origin.y = 0
             viewShifted = false
         }
         
@@ -88,10 +84,15 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
     }
 
     @IBAction func shareMeme(sender: AnyObject) {
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originImage: memeImageView.image!, finalImage: renderMeme())
+        let finalImage = renderMeme()
         
-        let activityViewController = UIActivityViewController(activityItems: [meme.finalImage], applicationActivities: nil)
+        
+        let activityViewController = UIActivityViewController(activityItems: [finalImage], applicationActivities: nil)
         presentViewController(activityViewController, animated: true, completion: nil)
+        activityViewController.completionWithItemsHandler = {(activityType, completed:Bool, returnedItems:[AnyObject]?, error: NSError?) in
+            _ = Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, originImage: self.memeImageView.image!, finalImage: finalImage)
+            // Nothing to do yet - will save persistently soon
+        }
         
     }
     
