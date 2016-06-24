@@ -9,14 +9,24 @@
 import UIKit
 
 class SentMemesCollectionViewController: UICollectionViewController {
-    let cellId = "SentMemeCollectionViewCell"
+    let cellId = "MemeCollectionCell"
     
-    override func viewDidLoad() {
-        collectionView?.registerClass(SentMemeCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
-    }
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     var memes: [Meme] {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let space: CGFloat = 3.0
+        let dimension = (view.frame.size.width - (2 * space)) / 3.0
+        
+        flowLayout.minimumInteritemSpacing = space
+        flowLayout.minimumLineSpacing = space
+        flowLayout.itemSize = CGSizeMake(dimension, dimension)
+        
     }
     
     // MARK: UICollectionViewDelegate / UICollectionViewDatasource
@@ -31,13 +41,17 @@ class SentMemesCollectionViewController: UICollectionViewController {
         let meme = memes[indexPath.item]
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellId, forIndexPath: indexPath) as! SentMemeCollectionViewCell
-        cell.imageView.image = meme.finalImage
+        cell.imageView?.image = meme.finalImage
         
         return cell
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let meme = memes[indexPath.item]
+        
+        let editorViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
+        self.navigationController?.pushViewController(editorViewController, animated: true)
+        editorViewController.memeToLoad = meme
         print("Selected meme", meme)
     }
 }

@@ -22,6 +22,8 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
     
     var viewShifted = false
     
+    var memeToLoad : Meme?;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +41,11 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditorViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditorViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+        if let meme = memeToLoad {
+            setMeme(meme)
+            memeToLoad = nil
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -47,6 +54,13 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
 
+    }
+    
+    func setMeme(meme: Meme) {
+        resetUi()
+        topTextField.text = meme.topText
+        bottomTextField.text = meme.bottomText
+        memeImageView.image = meme.originImage
     }
     
     func resetUi() {
@@ -105,7 +119,7 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
     }
 
     @IBAction func cancelEdit(sender: AnyObject) {
-        resetUi()
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func openCamera(sender: AnyObject) {

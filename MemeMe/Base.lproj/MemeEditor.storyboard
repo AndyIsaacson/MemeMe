@@ -9,7 +9,7 @@
         <!--Editor View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
-                <viewController id="01J-lp-oVM" customClass="EditorViewController" customModule="MemeMe" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditorVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="01J-lp-oVM" customClass="EditorViewController" customModule="MemeMe" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
@@ -18,10 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MdI-6f-n0B" userLabel="MemeView">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MdI-6f-n0B" userLabel="MemeView">
                                 <rect key="frame" x="20" y="64" width="560" height="492"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sbh-85-ZD1" userLabel="MemeImageView">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sbh-85-ZD1" userLabel="MemeImageView">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="492"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="top" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c7k-p8-YVo" userLabel="TopTextField" customClass="MemeTextField" customModule="MemeMe" customModuleProvider="target">
@@ -30,7 +30,7 @@
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="40"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="bottom" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6b4-EG-gRG" userLabel="BottomTextField" customClass="MemeTextField" customModule="MemeMe" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="bottom" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6b4-EG-gRG" userLabel="BottomTextField" customClass="MemeTextField" customModule="MemeMe" customModuleProvider="target">
                                         <rect key="frame" x="10" y="434" width="540" height="48"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="40"/>
@@ -107,7 +107,7 @@
         <scene sceneID="lpb-JL-6Mc">
             <objects>
                 <navigationController id="MP4-bd-Xpx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" id="Uau-IQ-Fu7"/>
+                    <tabBarItem key="tabBarItem" title="List" image="Table" id="Uau-IQ-Fu7"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GIt-BQ-Iko">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -165,14 +165,14 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="2zr-5S-3Mt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="j9J-D2-tZ7">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="j9J-D2-tZ7">
                             <size key="itemSize" width="120" height="120"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SentMemeCollectionViewCell" id="kfi-vZ-zD4" customClass="SentMemeCollectionViewCell" customModule="MemeMe" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MemeCollectionCell" id="kfi-vZ-zD4" customClass="SentMemeCollectionViewCell" customModule="MemeMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -204,6 +204,7 @@
                     <navigationItem key="navigationItem" id="cSb-OW-kp4"/>
                     <connections>
                         <outlet property="collectionView" destination="2zr-5S-3Mt" id="jLn-gD-hsN"/>
+                        <outlet property="flowLayout" destination="j9J-D2-tZ7" id="iRM-Qp-JlG"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AwH-DF-hL8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -214,7 +215,7 @@
         <scene sceneID="gsy-3r-BhQ">
             <objects>
                 <navigationController id="Gha-fg-c24" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Grid" id="KnY-CC-eCs"/>
+                    <tabBarItem key="tabBarItem" title="Grid" image="Collection" id="KnY-CC-eCs"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pn6-e2-U5A">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -226,28 +227,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wQv-xa-uXU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="864" y="1843"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="EMx-bZ-CJP">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="pAJ-SO-hy4" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zD4-Vv-9P2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="tMu-a3-aS0">
-                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="01J-lp-oVM" kind="relationship" relationship="rootViewController" id="nDY-u6-3ts"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5V4-rA-SM7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="53" y="375"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="j8l-F7-OCr">
@@ -268,4 +247,8 @@
             <point key="canvasLocation" x="53" y="1371"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Collection" width="30" height="30"/>
+        <image name="Table" width="30" height="30"/>
+    </resources>
 </document>

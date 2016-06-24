@@ -13,10 +13,9 @@ func makeSampleMemeList() -> [Meme] {
     
     let inigoMeme = Meme(topText: "Hello!  My name is", bottomText: "Swifty.  How are you?", originImage: UIImage(named: "InigoUnfilled")!, finalImage: UIImage(named: "InigoFilled")!)
     
-    memes.append(inigoMeme)
-    memes.append(inigoMeme)
-
-    memes.append(inigoMeme)
+    for _ in 1...5 {
+        memes.append(inigoMeme)
+    }
 
     
     return memes

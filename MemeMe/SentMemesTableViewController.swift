@@ -9,6 +9,7 @@
 import UIKit
 
 class SentMemesTableViewController: UITableViewController {
+    let cellId = "MemeTableCell"
     var memes: [Meme] {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
     }
@@ -20,7 +21,7 @@ class SentMemesTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellId = "MemeTableCell"
+
         
         let meme = memes[indexPath.item]
         
@@ -33,6 +34,10 @@ class SentMemesTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let meme = memes[indexPath.item]
+        
+        let editorViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
+        self.navigationController?.pushViewController(editorViewController, animated: true)
+        editorViewController.memeToLoad = meme
         print("Selected meme", meme)
     }
 }
