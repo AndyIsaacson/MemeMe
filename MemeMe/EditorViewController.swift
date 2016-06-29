@@ -21,6 +21,7 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
 
     
     var viewShifted = false
+    var tabBarFrame : CGRect?
     
     var willResetOnAppear = false
     
@@ -42,6 +43,10 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditorViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditorViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
+        tabBarFrame = self.tabBarController?.tabBar.frame
+        self.tabBarController?.tabBar.frame = CGRectZero
+        self.tabBarController?.tabBar.hidden = true
+        self.navigationController?.setToolbarHidden(false, animated: false)
         
         if willResetOnAppear {
             resetUi()
@@ -54,6 +59,14 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        
+        if let tabBarFrame = tabBarFrame {
+            self.tabBarController?.tabBar.frame = tabBarFrame
+        }
+        self.tabBarController?.tabBar.hidden = false
+        self.navigationController?.setToolbarHidden(true, animated: false)
+
+
 
     }
     
@@ -105,8 +118,11 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
         let activityViewController = UIActivityViewController(activityItems: [finalImage], applicationActivities: nil)
         presentViewController(activityViewController, animated: true, completion: nil)
         activityViewController.completionWithItemsHandler = {(activityType, completed:Bool, returnedItems:[AnyObject]?, error: NSError?) in
-            _ = Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, originImage: self.memeImageView.image!, finalImage: finalImage)
-            // Nothing to do yet - will save persistently soon
+            let meme = Meme(topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, originImage: self.memeImageView.image!, finalImage: finalImage)
+            
+            (UIApplication.sharedApplication().delegate as! AppDelegate).memes.append(meme)
+            print("appended Meme")
+            self.cancelEdit(self)
         }
         
     }

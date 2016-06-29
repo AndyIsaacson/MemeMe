@@ -51,11 +51,19 @@
                                     <constraint firstItem="6b4-EG-gRG" firstAttribute="bottom" secondItem="sbh-85-ZD1" secondAttribute="bottom" constant="-10" id="dBi-3D-0aY"/>
                                 </constraints>
                             </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="(tap to dismiss)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fVT-GH-n41">
+                                <rect key="frame" x="25" y="20" width="121" height="30"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="MdI-6f-n0B" secondAttribute="leading" id="4SO-VW-Ekg"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="MdI-6f-n0B" secondAttribute="bottom" id="9ZG-dC-HPn"/>
+                            <constraint firstItem="fVT-GH-n41" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="P5x-UX-cfw"/>
+                            <constraint firstItem="fVT-GH-n41" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="5" id="X5Y-uK-gwM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MdI-6f-n0B" secondAttribute="trailing" id="XGa-bM-HhI"/>
                             <constraint firstItem="MdI-6f-n0B" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="onT-rE-OPZ"/>
                         </constraints>
@@ -203,6 +211,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Q6r-l1-fMj">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="Kd3-D8-tz4" kind="relationship" relationship="rootViewController" id="zL1-hO-oIA"/>
                     </connections>
@@ -238,7 +250,7 @@
                         <viewControllerLayoutGuide type="bottom" id="we1-78-JBg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7xG-hX-58M">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i7N-pl-raq" userLabel="MemeView">
@@ -310,7 +322,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="albumButton" destination="GSB-X8-Rde" id="huU-dj-Msg"/>
                         <outlet property="bottomTextField" destination="P6P-g3-hgQ" id="I5h-CB-xUY"/>

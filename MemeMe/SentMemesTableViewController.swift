@@ -14,6 +14,10 @@ class SentMemesTableViewController: UITableViewController {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
     }
     
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
+    }
+    
     @IBAction func didTouchAdd(sender: AnyObject) {
         let editorViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
         editorViewController.willResetOnAppear = true
@@ -33,7 +37,7 @@ class SentMemesTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath)
         cell.imageView!.image = meme.finalImage
-        cell.textLabel!.text = meme.topText + "\\" + meme.bottomText
+        cell.textLabel!.text = meme.topText + " -- " + meme.bottomText
         
         return cell
     }

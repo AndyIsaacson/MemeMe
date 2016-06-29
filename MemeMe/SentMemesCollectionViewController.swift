@@ -29,6 +29,10 @@ class SentMemesCollectionViewController: UICollectionViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        collectionView?.reloadData()
+    }
+    
     @IBAction func didTouchAdd(sender: AnyObject) {
         let editorViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
         editorViewController.willResetOnAppear = true
