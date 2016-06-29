@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SentMemesTableViewController: UITableViewController {
+class SentMemesTableViewController: UITableViewController, MemeSelector {
     let cellId = "MemeTableCell"
     var memes: [Meme] {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
@@ -19,9 +19,10 @@ class SentMemesTableViewController: UITableViewController {
     }
     
     @IBAction func didTouchAdd(sender: AnyObject) {
-        let editorViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
-        editorViewController.willResetOnAppear = true
-        self.navigationController?.pushViewController(editorViewController, animated: true)
+//        let editorViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
+//        editorViewController.willResetOnAppear = true
+//        self.navigationController?.pushViewController(editorViewController, animated: true)
+        launchCreateNewMeme()
     }
     
     // MARK: UITableViewDelegate / UITableViewDatasource
@@ -45,11 +46,13 @@ class SentMemesTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let meme = memes[indexPath.item]
         
-        let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DetailVC") as! DetailViewController
-        detailViewController.memeToLoad = meme
-        self.presentViewController(detailViewController, animated: true, completion: nil)
+        launchDetailView(meme)
         
-        print("Selected meme", meme)
+//        let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DetailVC") as! DetailViewController
+//        detailViewController.memeToLoad = meme
+//        self.presentViewController(detailViewController, animated: true, completion: nil)
+//        
+//        print("Selected meme", meme)
 
     }
     

@@ -51,19 +51,11 @@
                                     <constraint firstItem="6b4-EG-gRG" firstAttribute="bottom" secondItem="sbh-85-ZD1" secondAttribute="bottom" constant="-10" id="dBi-3D-0aY"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="(tap to dismiss)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fVT-GH-n41">
-                                <rect key="frame" x="25" y="20" width="121" height="30"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="MdI-6f-n0B" secondAttribute="leading" id="4SO-VW-Ekg"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="MdI-6f-n0B" secondAttribute="bottom" id="9ZG-dC-HPn"/>
-                            <constraint firstItem="fVT-GH-n41" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="P5x-UX-cfw"/>
-                            <constraint firstItem="fVT-GH-n41" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="5" id="X5Y-uK-gwM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MdI-6f-n0B" secondAttribute="trailing" id="XGa-bM-HhI"/>
                             <constraint firstItem="MdI-6f-n0B" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="onT-rE-OPZ"/>
                         </constraints>
@@ -335,6 +327,24 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DZF-sE-ERY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3557" y="2089"/>
+        </scene>
+        <!--EditorNavController-->
+        <scene sceneID="pKZ-Fy-WBQ">
+            <objects>
+                <navigationController storyboardIdentifier="EditorNavVC" automaticallyAdjustsScrollViewInsets="NO" id="vyZ-NW-XAg" userLabel="EditorNavController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xGU-Ra-raG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="l8F-CT-Pd7" kind="relationship" relationship="rootViewController" id="CHn-T8-Ljm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UXY-Qb-WGr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2745" y="2089"/>
         </scene>

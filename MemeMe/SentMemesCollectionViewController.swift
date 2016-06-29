@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SentMemesCollectionViewController: UICollectionViewController {
+class SentMemesCollectionViewController: UICollectionViewController, MemeSelector {
     let cellId = "MemeCollectionCell"
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
@@ -34,9 +34,10 @@ class SentMemesCollectionViewController: UICollectionViewController {
     }
     
     @IBAction func didTouchAdd(sender: AnyObject) {
-        let editorViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
-        editorViewController.willResetOnAppear = true
-        self.navigationController?.pushViewController(editorViewController, animated: true)
+//        let editorViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
+//        editorViewController.willResetOnAppear = true
+//        self.navigationController?.pushViewController(editorViewController, animated: true)
+        launchCreateNewMeme()
     }
     
     // MARK: UICollectionViewDelegate / UICollectionViewDatasource
@@ -59,10 +60,12 @@ class SentMemesCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let meme = memes[indexPath.item]
         
-        let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DetailVC") as! DetailViewController
-        detailViewController.memeToLoad = meme
-        self.presentViewController(detailViewController, animated: true, completion: nil)
+        launchDetailView(meme)
         
-        print("Selected meme", meme)
+//        let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DetailVC") as! DetailViewController
+//        detailViewController.memeToLoad = meme
+//        self.presentViewController(detailViewController, animated: true, completion: nil)
+//        
+//        print("Selected meme", meme)
     }
 }

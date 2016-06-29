@@ -14,15 +14,10 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     
-    let tapRecognizer = UITapGestureRecognizer()
-    
     var memeToLoad : Meme?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tapRecognizer.addTarget(self, action: #selector(self.dismissDetailVC))
-        self.view.addGestureRecognizer(tapRecognizer)
         
         if let meme = memeToLoad {
             topTextField.text = meme.topText
@@ -32,9 +27,12 @@ class DetailViewController: UIViewController {
         }
     }
     
-    func dismissDetailVC() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    override func viewWillAppear(animated: Bool) {
+        self.tabBarController?.tabBar.hidden = true
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        self.tabBarController?.tabBar.hidden = false
+    }
     
 }

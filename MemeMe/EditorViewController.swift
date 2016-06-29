@@ -20,7 +20,6 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
     @IBOutlet weak var albumButton: UIBarButtonItem!
 
     
-    var viewShifted = false
     var tabBarFrame : CGRect?
     
     var willResetOnAppear = false
@@ -40,12 +39,11 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditorViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditorViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        addNotifications()
         
-        tabBarFrame = self.tabBarController?.tabBar.frame
-        self.tabBarController?.tabBar.frame = CGRectZero
-        self.tabBarController?.tabBar.hidden = true
+        //tabBarFrame = self.tabBarController?.tabBar.frame
+        //self.tabBarController?.tabBar.frame = CGRectZero
+        //self.tabBarController?.tabBar.hidden = true
         self.navigationController?.setToolbarHidden(false, animated: false)
         
         if willResetOnAppear {
@@ -57,8 +55,7 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        removeNotifications()
         
         if let tabBarFrame = tabBarFrame {
             self.tabBarController?.tabBar.frame = tabBarFrame
@@ -66,7 +63,16 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
         self.tabBarController?.tabBar.hidden = false
         self.navigationController?.setToolbarHidden(true, animated: false)
 
-
+    }
+    
+    func addNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditorViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditorViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func removeNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
 
     }
     
@@ -92,16 +98,12 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
     func keyboardWillShow(notification: NSNotification) {
         if bottomTextField.isFirstResponder() {
             let newOffset = getKeyboardHeight(notification)
-            view.frame.origin.y -= newOffset
-            viewShifted = true
+            view.frame.origin.y = -newOffset
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        if viewShifted {
-           view.frame.origin.y = 0
-            viewShifted = false
-        }
+        view.frame.origin.y = 0
         
     }
     
@@ -129,14 +131,14 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
     
     func renderMeme() -> UIImage {
         UIGraphicsBeginImageContext(self.memeContainerView.frame.size)
-        self.memeContainerView.drawViewHierarchyInRect(self.memeContainerView.frame, afterScreenUpdates: true)
+        memeContainerView.drawViewHierarchyInRect(self.memeContainerView.frame, afterScreenUpdates: true)
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return memedImage
     }
 
     @IBAction func cancelEdit(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func openCamera(sender: AnyObject) {
