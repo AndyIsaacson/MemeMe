@@ -29,6 +29,12 @@ class SentMemesCollectionViewController: UICollectionViewController {
         
     }
     
+    @IBAction func didTouchAdd(sender: AnyObject) {
+        let editorViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
+        editorViewController.willResetOnAppear = true
+        self.navigationController?.pushViewController(editorViewController, animated: true)
+    }
+    
     // MARK: UICollectionViewDelegate / UICollectionViewDatasource
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -49,9 +55,10 @@ class SentMemesCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let meme = memes[indexPath.item]
         
-        let editorViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
-        self.navigationController?.pushViewController(editorViewController, animated: true)
-        editorViewController.memeToLoad = meme
+        let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DetailVC") as! DetailViewController
+        detailViewController.memeToLoad = meme
+        self.presentViewController(detailViewController, animated: true, completion: nil)
+        
         print("Selected meme", meme)
     }
 }

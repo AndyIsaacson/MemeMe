@@ -22,7 +22,7 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
     
     var viewShifted = false
     
-    var memeToLoad : Meme?;
+    var willResetOnAppear = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,9 +42,10 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UINavigationC
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditorViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditorViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
-        if let meme = memeToLoad {
-            setMeme(meme)
-            memeToLoad = nil
+        
+        if willResetOnAppear {
+            resetUi()
+            willResetOnAppear = false
         }
     }
     
